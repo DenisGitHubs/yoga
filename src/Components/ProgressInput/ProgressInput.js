@@ -34,7 +34,7 @@ export default function ProgressInput ({ closeInput, yogaWorkouts, setYogaWorkou
                 )
             }
             
-            function ProgressList () {
+            function ProgressList2 () {
                 return (
                     yogaWorkouts[index].exercise.map((exercise) => (
                         <ProgressHTML exercise={exercise} />
@@ -51,7 +51,7 @@ export default function ProgressInput ({ closeInput, yogaWorkouts, setYogaWorkou
                 </S.ProgressCloseButton>
                 <S.ProgressHeader>Мой прогресс</S.ProgressHeader>
                 <S.ProgressList>
-                    <ProgressList/>
+                    <ProgressList2/>
                     <S.ProgressInputButton onClick={() => submitProgress()} type='submit'>Отправить</S.ProgressInputButton>
                 </S.ProgressList>
             </S.ProgressWrapper> }
