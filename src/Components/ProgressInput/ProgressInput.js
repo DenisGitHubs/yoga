@@ -4,14 +4,15 @@ import { useState } from 'react';
 import ValidatedProgress from '../ValidatedProgress/ValidatedProgress';
 import { updateProgressExercise } from '../../firebase/updateUserProgress';
 import { useDataWorkout } from '../../firebase/fireWorkouts';
+import { useUser } from '../../firebase/getUser';
 
 export default function ProgressInput ({ closeInput, yogaWorkouts, setYogaWorkouts }) {
     const [newPogress, setNewProgress] = useState([])
+    const [confirmOnShow, setConfirmOnShow] = useState(false);
         //выбранный урок из списка
         const params = useParams();
         const index = Number(params.id);
 
-        const [confirmOnShow, setConfirmOnShow] = useState(false);
         const submitProgress = () => {
             updateProgressExercise(index, newPogress)
             setConfirmOnShow(true);
@@ -33,7 +34,7 @@ export default function ProgressInput ({ closeInput, yogaWorkouts, setYogaWorkou
                 )
             }
             
-            function ProgressList2 () {
+            function ProgressList () {
                 return (
                     yogaWorkouts[index].exercise.map((exercise) => (
                         <ProgressHTML exercise={exercise} />
@@ -50,7 +51,7 @@ export default function ProgressInput ({ closeInput, yogaWorkouts, setYogaWorkou
                 </S.ProgressCloseButton>
                 <S.ProgressHeader>Мой прогресс</S.ProgressHeader>
                 <S.ProgressList>
-                    <ProgressList2/>
+                    <ProgressList/>
                     <S.ProgressInputButton onClick={() => submitProgress()} type='submit'>Отправить</S.ProgressInputButton>
                 </S.ProgressList>
             </S.ProgressWrapper> }

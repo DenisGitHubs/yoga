@@ -10,6 +10,7 @@ import WorkoutSelect from "../../Components/WorkoutSelect/WorkoutSelect";
 import { Loader } from "../../Components/loader/loader";
 import { useDataWorkout } from "../../firebase/fireWorkouts";
 import { dataTraining } from "../../context/dataTraining";
+import { useUser } from "../../firebase/getUser";
 const courses = [{ id: "1", img: "/img/profCard1.png" }];
 
   //мокап тренировок
@@ -153,8 +154,10 @@ export const Profile = () => {
   const progress = useSelector(state => state.progress)
   const [dataTrain, setDataTrain] = useState("1")
   useDataWorkout();
+  useUser()
   const dataWorkout = useSelector((state) => state.workout);
   const email = localStorage.getItem("email");
+
 console.log(progress);
   useEffect(() => {
     dispatch(

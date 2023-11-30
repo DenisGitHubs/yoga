@@ -5,10 +5,8 @@ import * as S from "./styles";
 import { useEffect, useState } from "react";
 import ProgressInput from "../../Components/ProgressInput/ProgressInput";
 import { setLogo } from "../../store/slices/logoSlices";
-import { useDispatch, useSelector } from "react-redux";
-import { useDataWorkout } from "../../firebase/fireWorkouts";
+import { useDispatch } from "react-redux";
 import { useUser } from "../../firebase/getUser";
-import { dataTraining } from "../../context/dataTraining";
 
 export const Trainings = () => {
   useUser()
@@ -16,15 +14,6 @@ export const Trainings = () => {
   const getProgressInPercent = ({ needed, done }) => {
     return (done / needed) * 100;
   };
-  const progress = useSelector(state => state.progress)
-  const [dataTrain, setDataTrain] = useState(null)
-useEffect(() => {
-  if(progress.userProgressAll.userProgressAll.email !== null) {
-    setDataTrain(progress.userProgressAll.userProgressAll.email)
-    // console.log(progress.userProgressAll.userProgressAll.workoutsProgress[id][id]);
-    setShow(true)
-  }
-}, [progress]);
 
   //мокап тренировок
   const [yogaWorkouts, setYogaWorkouts] = useState([
@@ -211,6 +200,7 @@ useEffect(() => {
   const [show, setShow] = useState(false);
   const closeInput = () => {
     setInputOnShow(false);
+
   };
 
   const progressForm = (
@@ -228,7 +218,7 @@ useEffect(() => {
       })
     );
   }, []);
-  if(show === true){
+
     return (
       <S.Wrapper>
       <S.HeaderWrapper>
@@ -301,5 +291,5 @@ useEffect(() => {
     </S.Wrapper>
   );
   };
-  }
+  
 
