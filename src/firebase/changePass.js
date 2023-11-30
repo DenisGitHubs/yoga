@@ -7,13 +7,19 @@ import {
   } from 'firebase/auth';
   
 
-  
-//   const oldPassword = 
-//   const credential = EmailAuthProvider.credential(
-//      this.currentUser.email,
-//      oldPassword
-//   );
-//   await reauthenticateWithCredential(auth.currentUser, credential);
+  export async function CheckCredential() {
+    const user = getAuth()
+    console.log(user);
+  //   const oldPassword = 1;
+  //   const credential = EmailAuthProvider.credential(
+  //     this.currentUser.email,
+  //     oldPassword
+  //  );
+  //  await reauthenticateWithCredential(auth.currentUser, credential);
+    
+  }
+
+
   
 
   export async function changePassword(newPassword) {
