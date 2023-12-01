@@ -2,10 +2,12 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as S from "./styles";
 import { changePassword } from "../../firebase/changePass";
+import { getAuth } from "firebase/auth";
 
 export function NewRegister({ setEditPass }) {
   const [repeatPass, setRepeatPass] = useState("");
   const [valuePass, setValuePass] = useState("");
+  const [valueOldPass, setValueOldPass] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,6 +22,15 @@ export function NewRegister({ setEditPass }) {
       setError("");
     }
     setValuePass(event.target.value);
+  };
+
+  const enterOldPassword = (event) => {
+    if (event.target.value.length < 6) {
+      setError("Пароль должен быть не менее 6 знаков");
+    } else {
+      setError("");
+    }
+    setValueOldPass(event.target.value);
   };
 
   const handleRepeatChange = (event) => {
@@ -51,7 +62,7 @@ export function NewRegister({ setEditPass }) {
       setError("");
       setValuePass(repeatPass);
       setIsLoading(true);
-      changePassword(valuePass);
+      changePassword(valueOldPass, valuePass);
       setEditPass(false);
     }
   };
@@ -70,8 +81,8 @@ export function NewRegister({ setEditPass }) {
             <S.ModalInput
               type="password"
               placeholder="Введите старый пароль"
-              value={valuePass}
-              onChange={handleChange}
+              value={valueOldPass}
+              onChange={enterOldPassword}
             />
           </S.ModalFormLoginInput>
           <S.ModalFormLoginInput>

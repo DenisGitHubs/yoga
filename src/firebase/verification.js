@@ -4,10 +4,8 @@ import firebase from "firebase/compat/app";
 
 
 
-import { getAuth, reauthenticateWithCredential } from "firebase/auth";
+import { getAuth, reauthenticateWithCredential, signOut, verifyBeforeUpdateEmail } from "firebase/auth";
 
-const auth = getAuth();
-const user = auth.currentUser;
 
 // TODO(you): prompt the user to re-provide their sign-in credentials
 // const credential = promptForCredentials();
@@ -30,3 +28,13 @@ const user = auth.currentUser;
 //     });
 // }
 
+export async function firebaseEmailReset(user, newEmail) {
+    
+    try {
+        await verifyBeforeUpdateEmail(user, newEmail);
+        await firebase.auth().signOut();
+        window.location.reload();
+    } catch (error) {
+        console.error(error.message);
+    }
+}

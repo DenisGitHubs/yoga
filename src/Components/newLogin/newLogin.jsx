@@ -13,9 +13,14 @@ export const NewLogin = ({ setEdit }) => {
     setEdit(false);
   };
 
-  const handleSaveNewLogin = () => {
-    changeLogin(login);
-    console.log("object");
+  const handleSaveNewLogin = async () => {
+
+    await changeLogin(login);
+    const responsError = localStorage.getItem('error')
+    if(responsError !== null) {
+      setError(responsError)
+    }
+    console.log('done');
   };
   const newLogin = (event) => {
     const loginValidation = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;

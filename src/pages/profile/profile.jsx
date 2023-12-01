@@ -11,6 +11,7 @@ import { Loader } from "../../Components/loader/loader";
 import { useDataWorkout } from "../../firebase/fireWorkouts";
 import { dataTraining } from "../../context/dataTraining";
 import { useUser } from "../../firebase/getUser";
+import { getAuth } from "firebase/auth";
 const courses = [{ id: "1", img: "/img/profCard1.png" }];
 
 
@@ -24,11 +25,9 @@ export const Profile = () => {
   const [dataTrain, setDataTrain] = useState("1")
   useDataWorkout();
   useUser()
+  const user = getAuth()
   const dataWorkout = useSelector((state) => state.workout);
   const email = localStorage.getItem("email");
-
-  console.log(progress);
-
   useEffect(() => {
     dispatch(
       setLogo({

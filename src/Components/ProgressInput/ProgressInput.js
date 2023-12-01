@@ -7,25 +7,28 @@ import { useDataWorkout } from '../../firebase/fireWorkouts';
 import { useUser } from '../../firebase/getUser';
 
 export default function ProgressInput ({ closeInput, trainingChosen }) {
-    const [newProgress, setNewProgress] = useState([])
+    const [newProgress, setNewProgress] = useState([]);
+    const [newID, setNewId] = useState([]);
+    const [newOutData, setNewOutData] = useState([]);
     const [confirmOnShow, setConfirmOnShow] = useState(false);
-        
     //выбранный урок из списка
         const params = useParams();
         const index = Number(params.id);
 
         const submitProgress = () => {
-            updateProgressExercise(index, newProgress)
+            const minusIndex = index - 1;
+            updateProgressExercise(minusIndex, newOutData)
             setConfirmOnShow(true);
         }
 
             function ProgressHTML(props) {
+                
                 function saveData(val) {
-                    const id = props.exercise.id - 1;
-                    let tempValues = newProgress;
-                    tempValues[id] = Number(val);
-                    setNewProgress(tempValues)
-
+                    let tempOutData = newOutData;
+                    const id = props.exercise.id;
+                    const nameTraining = props.exercise.name
+                    tempOutData[id] = {id: id, training: nameTraining, progress: Number(val)};
+                    setNewOutData(newOutData)
                     // опция для отправки данных в массиве
                     // const newAddedProgress = {id: props.exercise.id, repeats_done: val}
                     // setNewProgress([...newProgress, newAddedProgress])
@@ -45,9 +48,8 @@ export default function ProgressInput ({ closeInput, trainingChosen }) {
                 return (
                     trainingChosen.exercise.map((exercise) => (
                         <ProgressHTML exercise={exercise} />
-                      ))
-                )
-            };
+                      )))};
+
     return (
         <S.ProgressContainer>
             {confirmOnShow ? 
@@ -65,3 +67,16 @@ export default function ProgressInput ({ closeInput, trainingChosen }) {
         </S.ProgressContainer>
     )
 }
+
+
+// function ProgressHTML(props) {
+//     function saveData(val) {
+//         const id = props.exercise.id - 1;
+//         let tempValues = newProgress;
+//         tempValues[id] = Number(val);
+//         setNewProgress(tempValues)
+
+//         // опция для отправки данных в массиве
+//         // const newAddedProgress = {id: props.exercise.id, repeats_done: val}
+//         // setNewProgress([...newProgress, newAddedProgress])
+//     }

@@ -3,9 +3,11 @@ import * as S from "./styles";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../store/slices/userSlices";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuth, createUserWithEmailAndPassword } from "@firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "@firebase/auth";
 import { setLogo } from "../../store/slices/logoSlices";
 import { saveNewUsers } from "../../firebase/newUserData";
+import { firebaseEmailReset } from "../../firebase/verification";
+
 
 export function Register() {
   const [newEmail, setNewEmail] = useState("");
@@ -76,12 +78,18 @@ export function Register() {
 
 
     const createUser = async () => {
+      const auth = getAuth();
       try {
+        
         const { user } = await createUserWithEmailAndPassword(
           auth,
           newEmail,
           password
         );
+        sendEmailVerification(auth.currentUser).then(() => {
+          console.log("email verification sent to user");
+        });
+
         dispatch(
           setUser({
             userMail: user.email,
