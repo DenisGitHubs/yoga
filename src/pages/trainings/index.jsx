@@ -9,9 +9,6 @@ import ProgressInput from "../../Components/ProgressInput/ProgressInput";
 import { setLogo } from "../../store/slices/logoSlices";
 import { useDispatch, useSelector } from "react-redux";
 import { Loader } from "../../Components/loader/loader";
-
-
-
 export const Trainings = () => {
   
   useUser();
@@ -229,6 +226,7 @@ export const Trainings = () => {
 
   const closeInput = () => {
     setInputOnShow(false);
+
   };
 
   const progressForm = (
