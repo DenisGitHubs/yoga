@@ -60,7 +60,6 @@ export function saveNewUsers(newEmail, password) {
 //     // An error happened.
 // })
 
-
 // firebase.auth().sendSignInLinkToEmail(email, actionCodeSettings)
 //   .then(() => {
 //     // The link was successfully sent. Inform the user.
