@@ -31,6 +31,7 @@ useEffect(() => {
     logo: "white",
   }))
 }, []);
+CheckCredential()
 useUser()
 useDataWorkout();
       return (

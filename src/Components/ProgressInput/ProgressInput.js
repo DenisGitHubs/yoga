@@ -44,7 +44,7 @@ export default function ProgressInput ({ closeInput, trainingChosen }) {
                 )
             }
             
-            function ProgressList2 () {
+            function ProgressList () {
                 return (
                     trainingChosen.exercise.map((exercise) => (
                         <ProgressHTML exercise={exercise} />
@@ -60,7 +60,7 @@ export default function ProgressInput ({ closeInput, trainingChosen }) {
                 </S.ProgressCloseButton>
                 <S.ProgressHeader>Мой прогресс</S.ProgressHeader>
                 <S.ProgressList>
-                    <ProgressList2/>
+                    <ProgressList/>
                     <S.ProgressInputButton onClick={() => submitProgress()} type='submit'>Отправить</S.ProgressInputButton>
                 </S.ProgressList>
             </S.ProgressWrapper> }
