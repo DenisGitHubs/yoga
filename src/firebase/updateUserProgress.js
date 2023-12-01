@@ -18,12 +18,11 @@ import "firebase/compat/database";
 export function updateProgressExercise(IDtraining, progress) {
     const user = localStorage.getItem('email');
     const id = IDtraining
+    console.log(progress);
     firebase
     .database()
     .ref(`users/` + user.replace(/\./g, "-") + '/workoutsProgress' + `/${IDtraining}`)
-    .update({
-      progress,
-    })
+    .update([progress])
       .catch((error) => {
         console.error(error);
       });

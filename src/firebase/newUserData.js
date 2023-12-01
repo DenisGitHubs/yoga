@@ -36,11 +36,11 @@ export function saveNewUsers(newEmail, password) {
         ],
       ],
       workoutsProgress: [
-        {progress: [0]},
-        {progress: [0,0,0]},
-        {progress: [0,0,0,0,0]},
-        {progress: [0,0,0,0]},
-        {progress: [0,0,0]},
+        [[{id: 0, progress: 0, training: "Приветствие солнца"}]],
+        [[{id: 0, progress: 0, training: "Наклон вперед"}, {id: 1, progress: 0, training: "Наклон назад"}, {id: 2, progress: 0, training: "Поднятие ног, согнутых в коленях"}]],
+        [[{id: 0, progress: 0, training: "Наклон к правой ноге"}, {id: 1, progress: 0, training: "Наклон к левой ноге"}, {id: 2, progress: 0, training: "Наклон к согнутой правой ноге"}, {id: 3, progress: 0, training: "Наклон к согнутой левой ноге"}, {id: 4, progress: 0, training: "Асана стоя"}]],
+        [[{id: 0, progress: 0, training: "Сесть на пятки с носками от себя"}, {id: 1, progress: 0, training: "Сесть на пятки с носками на себя"}, {id: 2, progress: 0, training: "Отпустить колено на пол из позы лотоса"}, {id: 3, progress: 0, training: "Отпустить колено на пол из позы лотоса с соединенными стопами"}]],
+        [[{id: 0, progress: 0, training: "Округляем грудную клетку при выдохе"}, {id: 1, progress: 0, training: "Тянем левую руку в правую сторону"}, {id: 2, progress: 0, training: "Тянем правую руку в левую сторону (20 повторений)"}]],
       ],
       workoutsDone: [
         { name: "Утренняя практика", done: false },
