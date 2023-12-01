@@ -10,7 +10,7 @@ export const NewLogin = ({ setEdit }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const handleClose = () => {
-    // setEdit(false);
+    setEdit(false);
   };
 
   const handleSaveNewLogin = () => {

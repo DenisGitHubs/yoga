@@ -6,20 +6,22 @@ import { useAuth } from "../../hooks/use-auth";
 import { removeUser } from "../../store/slices/userSlices";
 
 export function Header() {
-
   const { isAuth } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [visible, setVisible] = useState(true);
+  const [menuVisible, setMenuVisible] = useState(false);
   const logo = useSelector((state) => state.logo);
   const email2 = localStorage.getItem("email");
-  const toggleVisibility = () => setVisible(!visible);
   const ToMain = () => {
     navigate("/");
   };
+
+  const menuAppear = () => {
+    setMenuVisible(!menuVisible);
+  };
+
   const Exit = () => {
-    dispatch(removeUser())
-    setVisible(!visible)
+    dispatch(removeUser());
     navigate("/");
   };
   const ToProfile = () => {
@@ -37,12 +39,24 @@ export function Header() {
           )}
         </Link>
         {isAuth ? (
-          <S.UserDiv>
-            <S.UserPhotoImg src="/img/Ellipse.png" alt="userphoto" />
-            <S.UserNameSpan color={logo.logo} onClick={toggleVisibility}>
-              {email2} ↓
-            </S.UserNameSpan>
-
+          <S.UserDiv onClick={menuAppear}>
+            <S.UserDetails>
+              <S.UserPhotoImg src="/img/Ellipse.png" alt="userphoto" />
+              <S.UserNameSpan color={logo.logo}>{email2} ↓</S.UserNameSpan>
+            </S.UserDetails>
+            <S.HeaderList $menuVisible={menuVisible}>
+              <S.HeaderUl onMouseLeave={() => setMenuVisible(false)}>
+                <S.HeaderLi color={logo.logo} onClick={ToMain}>
+                  На главную
+                </S.HeaderLi>
+                <S.HeaderLi color={logo.logo} onClick={ToProfile}>
+                  Профиль
+                </S.HeaderLi>
+                <S.HeaderLi color={logo.logo} onClick={Exit}>
+                  Выход
+                </S.HeaderLi>
+              </S.HeaderUl>
+            </S.HeaderList>
           </S.UserDiv>
         ) : (
           <S.LogoTitle>
@@ -52,21 +66,6 @@ export function Header() {
           </S.LogoTitle>
         )}
       </S.HeadContentDiv>
-      {!visible && (
-        <S.HeaderList>
-          <S.HeaderUl>
-            <S.HeaderLi color={logo.logo} onClick={ToMain}>
-              На главную
-            </S.HeaderLi>
-            <S.HeaderLi color={logo.logo} onClick={ToProfile}>
-              Профиль
-            </S.HeaderLi>
-            <S.HeaderLi color={logo.logo} onClick={Exit}>
-              Выход
-            </S.HeaderLi>
-          </S.HeaderUl>
-        </S.HeaderList>
-      )}
     </>
   );
 }

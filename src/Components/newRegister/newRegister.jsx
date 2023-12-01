@@ -69,6 +69,14 @@ export function NewRegister({ setEditPass }) {
           <S.ModalFormLoginInput>
             <S.ModalInput
               type="password"
+              placeholder="Введите старый пароль"
+              value={valuePass}
+              onChange={handleChange}
+            />
+          </S.ModalFormLoginInput>
+          <S.ModalFormLoginInput>
+            <S.ModalInput
+              type="password"
               placeholder="Пароль"
               value={valuePass}
               onChange={handleChange}
