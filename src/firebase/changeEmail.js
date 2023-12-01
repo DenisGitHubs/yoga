@@ -22,7 +22,7 @@ export async function changeLogin(login) {
     CheckCredential(auth)
 await firebaseEmailReset(auth.currentUser, login).then(() => {
     console.log('done');
-    localStorage.setItem('email', auth.currentUser.email)
+    // localStorage.setItem('email', auth.currentUser.email)
 }).catch((error) => {
     console.error(error.message);
     });
