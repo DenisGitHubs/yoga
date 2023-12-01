@@ -4,13 +4,14 @@ import * as S from "./WorkoutSelect.styled";
 import { useSelector } from "react-redux";
 
 export default function WorkoutSelect({
-  closeForm,
-  setYogaWorkouts,
+  closeForm
 }) {
+
   //нужно настроить динамическую isFinished в зависимости от repeats и repeats_done как будет готова БД
-  const yogaWorkouts = useSelector(state => state.workout)
+  const yogaWorkouts = useSelector(state => state.workout);
+
   const workoutList = yogaWorkouts.trainingData.map((workout) => (
-    <Link key={workout.id} to={`/training/${workout.id - 1}`}>
+    <Link key={workout.id} to={`/training/${workout.id}`}>
       <S.SelectItem $isFinished={workout.isFinished}>
         {workout.name}
         {workout.isFinished ? (

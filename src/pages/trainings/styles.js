@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
 export const HeaderWrapper = styled.div`
 margin-left: 140px;
 margin-right: 140px;
+position: relative;
 `
 
 

@@ -6,24 +6,31 @@ import { updateProgressExercise } from '../../firebase/updateUserProgress';
 import { useDataWorkout } from '../../firebase/fireWorkouts';
 import { useUser } from '../../firebase/getUser';
 
-export default function ProgressInput ({ closeInput, yogaWorkouts, setYogaWorkouts }) {
-    const [newPogress, setNewProgress] = useState([])
+export default function ProgressInput ({ closeInput, trainingChosen }) {
+    const [newProgress, setNewProgress] = useState([])
     const [confirmOnShow, setConfirmOnShow] = useState(false);
-        //выбранный урок из списка
+        
+    //выбранный урок из списка
         const params = useParams();
         const index = Number(params.id);
 
         const submitProgress = () => {
-            updateProgressExercise(index, newPogress)
+            updateProgressExercise(index, newProgress)
             setConfirmOnShow(true);
         }
+
             function ProgressHTML(props) {
                 function saveData(val) {
                     const id = props.exercise.id - 1;
-                    let tempValues = newPogress;
+                    let tempValues = newProgress;
                     tempValues[id] = Number(val);
                     setNewProgress(tempValues)
+
+                    // опция для отправки данных в массиве
+                    // const newAddedProgress = {id: props.exercise.id, repeats_done: val}
+                    // setNewProgress([...newProgress, newAddedProgress])
                 }
+
                 return(
                     <S.ProgressItem key={props.exercise.id}>
                     <label htmlFor={props.exercise.id}>Сколько раз вы сделали {props.exercise.name} </label>
@@ -36,7 +43,7 @@ export default function ProgressInput ({ closeInput, yogaWorkouts, setYogaWorkou
             
             function ProgressList2 () {
                 return (
-                    yogaWorkouts[index].exercise.map((exercise) => (
+                    trainingChosen.exercise.map((exercise) => (
                         <ProgressHTML exercise={exercise} />
                       ))
                 )

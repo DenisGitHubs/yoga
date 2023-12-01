@@ -8,7 +8,9 @@ export const Loader = styled.div`
       radial-gradient(circle 8px at 8px center, #580EA2 100%, transparent 0);
     background-size: 16px 16px;
     background-repeat: no-repeat;
-    position: relative;
+    position: absolute;
+    left: 550px;
+    top: 400px;
     animation: ballX 1s linear infinite;
 
     &:before {
