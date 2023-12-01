@@ -74,8 +74,8 @@ export const ModalFormLoginInput = styled.div`
 export const ModalFormLoginButtons = styled(ModalFormLoginInput)``;
 
 export const Text = styled.p`
-  padding-top: 38px;
-  padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 15px;
   color: #000;
   font-family: StratosSkyeng, sans-serif;
   font-size: 18px;
@@ -86,7 +86,7 @@ export const Text = styled.p`
 `;
 
 export const ModalInput = styled.input`
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   padding-top: 2px;
   padding-bottom: 8px;
   border: none;

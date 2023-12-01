@@ -11,140 +11,10 @@ import { Loader } from "../../Components/loader/loader";
 import { useDataWorkout } from "../../firebase/fireWorkouts";
 import { dataTraining } from "../../context/dataTraining";
 import { useUser } from "../../firebase/getUser";
+import { getAuth } from "firebase/auth";
 const courses = [{ id: "1", img: "/img/profCard1.png" }];
 
-  //мокап тренировок
-  const yogaWorkoutsMock = [{
-    id: 0,
-    name: 'Утренняя практика',
-    type: 'Йога на каждый день / 1 день',
-    exercise: [{
-      id: 1,
-      name: 'Приветствие солнца',
-      repeats: 10,
-      repeats_done: 15
-    }],
-    video_file: 'https://youtu.be/oqe98Dxivns',
-    isFinished: true
-  }, 
-  {
-    id: 1,
-    name: 'Красота и здоровье',
-    type: 'Йога на каждый день / 2 день',
-    exercise: [{
-      id: 1,
-      name: 'Наклон вперед',
-      repeats: 10,
-      repeats_done: 3
-    },
-    {
-      id: 2,
-      name: 'Наклон назад',
-      repeats: 10,
-      repeats_done: 5
-    },
-    {
-      id: 3,
-      name: 'Поднятие ног, согнутых в коленях',
-      repeats: 5,
-      repeats_done: 2
-    }],
-    video_file: 'https://www.youtube.com/embed/v-xTLFDhoD0?si=sOUcrSXeRMOTjIC1',
-    isFinished: true
-  },
-  {
-      id: 2,
-      name: 'Асаны стоя',
-      type: 'Йога на каждый день / 3 день',
-      exercise: [{
-        id: 1,
-        name: 'Наклон к правой ноге',
-        repeats: 10,
-        repeats_done: 0
-      },
-      {
-        id: 2,
-        name: 'Наклон к левой ноге',
-        repeats: 10,
-        repeats_done: 5
-      },
-      {
-        id: 3,
-        name: 'Наклон к согнутой правой ноге',
-        repeats: 10,
-        repeats_done: 2
-      },
-      {
-        id: 4,
-        name: 'Наклон к согнутой левой ноге',
-        repeats: 10,
-        repeats_done: 5
-      },
-      {
-        id: 5,
-        name: 'Асана стоя',
-        repeats: 10,
-        repeats_done: 5
-      }],
-      video_file: 'https://youtu.be/WxFz-4YsiEE',
-      isFinished: false
-  },
-  {
-      id: 3,
-      name: 'Растягиваем мышцы бедра',
-      type: 'Йога на каждый день / 4 день',
-      exercise: [{
-        id: 1,
-        name: 'Сесть на пятки с носками от себя',
-        repeats: 5,
-        repeats_done: 0
-      },
-      {
-        id: 2,
-        name: 'Сесть на пятки с носками на себя',
-        repeats: 5,
-        repeats_done: 5
-      },
-      {
-        id: 3,
-        name: 'Отпустить колено на пол из позы лотоса',
-        repeats: 10,
-        repeats_done: 2
-      },
-      {
-        id: 4,
-        name: 'Отпустить колено на пол из позы лотоса с соединенными стопами',
-        repeats: 10,
-        repeats_done: 5
-      }],
-      video_file: 'https://youtu.be/09uGkAEQuZI',
-      isFinished: true
-  },
-  {
-      id: 4,
-      name: 'Гибкость спины',
-      type: 'Йога на каждый день / 5 день',
-      exercise: [{
-        id: 1,
-        name: 'Округляем грудную клетку при выдохе',
-        repeats: 10,
-        repeats_done: 0
-      },
-      {
-        id: 2,
-        name: 'Тянем левую руку в правую сторону',
-        repeats: 20,
-        repeats_done: 5
-      },
-      {
-        id: 3,
-        name: 'Тянем правую руку в левую сторону (20 повторений)',
-        repeats: 20,
-        repeats_done: 2
-      }],
-      video_file: 'https://youtu.be/MIvcMapie_A',
-      isFinished: false
-  }];
+
 
 export const Profile = () => {
   const [edit, setEdit] = useState(false);
@@ -155,10 +25,9 @@ export const Profile = () => {
   const [dataTrain, setDataTrain] = useState("1")
   useDataWorkout();
   useUser()
+  const user = getAuth()
   const dataWorkout = useSelector((state) => state.workout);
   const email = localStorage.getItem("email");
-
-console.log(progress);
   useEffect(() => {
     dispatch(
       setLogo({
