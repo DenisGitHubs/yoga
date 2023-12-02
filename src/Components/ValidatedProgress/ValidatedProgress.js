@@ -2,8 +2,9 @@ import { useDataWorkout } from '../../firebase/fireWorkouts';
 import * as S from './ValidatedProgress.styled'
 
 export default function ValidatedProgress ({ closeInput }) {
-    window.location.reload(true)
     alert('ye')
+    window.location.reload(true)
+
 
     return (
         // <S.ValidatedProgressContainer>
