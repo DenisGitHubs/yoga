@@ -22,8 +22,10 @@ export function updateProgressExercise(IDtraining, progress) {
     firebase
     .database()
     .ref(`users/` + user.replace(/\./g, "-") + '/workoutsProgress' + `/${IDtraining}`)
-    .update([progress])
+    .set([progress])
       .catch((error) => {
         console.error(error);
       });
 }
+
+///update or set?

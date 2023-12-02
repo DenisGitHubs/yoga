@@ -14,8 +14,8 @@ export const Trainings = () => {
   
   useUser();
   useDataWorkout();
-  console.log('object');
   const [loaderOn, setLoaderOn] = useState(false);
+  const [showUpdt, setShowUpdt] = useState(true);
   const yogaWorkouts = useSelector(state => state.workout);
   const params = useParams();
   const index = Number(params.id);
@@ -81,12 +81,15 @@ export const Trainings = () => {
 
 
 
-  const progressForm = (
-    <ProgressInput
+  const progressForm = () => {
+
+    return(
+    <ProgressInput setShowUpdt={setShowUpdt}
       closeInput={closeInput}
       trainingChosen={trainingChosen}
     ></ProgressInput>
-  );
+  )
+    }
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
@@ -134,6 +137,8 @@ export const Trainings = () => {
               </S.FillInProgress>
             </S.ExerciseDescription>
             <S.Progress>
+              { showUpdt ? 
+              <>
               <S.ProgressHeader>Мой прогресс по тренировке</S.ProgressHeader>
               <S.ProgressDetails>
                 {trainingChosen?.exercise.map((exe, index) => (
@@ -162,11 +167,12 @@ export const Trainings = () => {
                   </S.ProgressItem>
                 ))}
               </S.ProgressDetails>
+              </> : null}
             </S.Progress>
           </S.ExerciseBlock>
         </S.ContentBlock>
         }
-        {inputOnShow ? progressForm : null}
+        {inputOnShow ? progressForm() : null}
       </S.HeaderWrapper>
     </S.Wrapper>
   );

@@ -9,13 +9,14 @@ export const NewLogin = ({ setEdit }) => {
   const [login, setLogin] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [valueOldPass, setValueOldPass] = useState("");
   const handleClose = () => {
     setEdit(false);
   };
 
   const handleSaveNewLogin = async () => {
 
-    await changeLogin(login);
+    await changeLogin(login, valueOldPass);
     const responsError = localStorage.getItem('error')
     if(responsError !== null) {
       setError(responsError)
@@ -30,6 +31,15 @@ export const NewLogin = ({ setEdit }) => {
     } else {
       setError(null);
     }
+  };
+
+  const enterOldPassword = (event) => {
+    if (event.target.value.length < 6) {
+      setError("Пароль должен быть не менее 6 знаков");
+    } else {
+      setError("");
+    }
+    setValueOldPass(event.target.value);
   };
 
   return (
@@ -48,6 +58,12 @@ export const NewLogin = ({ setEdit }) => {
               placeholder="Логин"
               onChange={newLogin}
               value={login}
+            />
+            <S.ModalInput
+              type="password"
+              placeholder="Введите старый пароль"
+              value={valueOldPass}
+              onChange={enterOldPassword}
             />
           </S.ModalFormLoginInput>
           <S.ModalFormLoginButtons>

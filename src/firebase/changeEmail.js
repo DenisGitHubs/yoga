@@ -17,23 +17,21 @@ import { firebaseEmailReset } from "./verification";
 // });
 // }
 
-export async function changeLogin(login) {
+export async function changeLogin(login, valueOldPass) {
     const auth = getAuth();
-    CheckCredential(auth)
+    CheckCredential(auth, valueOldPass)
 await firebaseEmailReset(auth.currentUser, login).then(() => {
     console.log('done');
-    // localStorage.setItem('email', auth.currentUser.email)
 }).catch((error) => {
     console.error(error.message);
     });
 }
 
-async function CheckCredential(auth) {
-    let valueOldPass = prompt('пароль')
-    const oldPassword = valueOldPass;
+async function CheckCredential(auth, valueOldPass) {
+
     const credential = EmailAuthProvider.credential(
         auth.currentUser.email,
-      oldPassword
+        valueOldPass
    );
    await reauthenticateWithCredential(auth.currentUser, credential);
   }
