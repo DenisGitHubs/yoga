@@ -111,7 +111,7 @@ export function Register() {
   return (
     <S.Wrapper>
       <S.ContainerEnter>
-        <S.ModalFormLoginTopImg src="/img/logo.png" alt="logo" />
+        <Link to="/"><S.ModalFormLoginTopImg src="/img/logo.png" alt="logo" /></Link>
         <S.ModalBlock>
           <S.ModalFormLogin>
             <Link to="/">

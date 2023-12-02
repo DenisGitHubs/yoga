@@ -93,7 +93,9 @@ export const Login = () => {
   return (
     <S.Wrapper>
       <S.ContainerEnter>
+      <Link to="/">
         <S.ModalFormLoginTopImg src="/img/logo.png" alt="logo" />
+        </Link>
         <S.ModalBlock>
           <S.ModalFormLogin action="#">
             <Link to="/">
