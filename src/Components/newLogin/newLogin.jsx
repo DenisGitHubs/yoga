@@ -16,7 +16,7 @@ export const NewLogin = ({ setEdit }) => {
 
   const handleSaveNewLogin = async () => {
 
-    await changeLogin(login);
+    await changeLogin(login, valueOldPass);
     const responsError = localStorage.getItem('error')
     if(responsError !== null) {
       setError(responsError)
