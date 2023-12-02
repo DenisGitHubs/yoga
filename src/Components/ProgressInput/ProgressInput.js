@@ -7,7 +7,7 @@ import { useDataWorkout } from '../../firebase/fireWorkouts';
 import { useUser } from '../../firebase/getUser';
 import { useSelector } from 'react-redux';
 
-export default function ProgressInput ({ closeInput, trainingChosen }) {
+export default function ProgressInput ({ProgressList, closeInput, trainingChosen }) {
     const [newOutData, setNewOutData] = useState([]);
     const [confirmOnShow, setConfirmOnShow] = useState(false);
     //выбранный урок из списка
@@ -21,7 +21,6 @@ export default function ProgressInput ({ closeInput, trainingChosen }) {
                     const minusIndex = index - 1;
                     await updateProgressExercise(minusIndex, newOutData);
                     setConfirmOnShow(true);
-
                 } else {
                     alert("Введите все значения, иначе магии не будет")
                 }
@@ -50,11 +49,6 @@ export default function ProgressInput ({ closeInput, trainingChosen }) {
                 )
             }
             
-            function ProgressList () {
-                return (
-                    trainingChosen.exercise.map((exercise) => (
-                        <ProgressHTML exercise={exercise} />
-                      )))};
 
     return (
         <S.ProgressContainer>
