@@ -49,14 +49,13 @@ export const ModalFormLoginInput = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  row-gap: 20px;
 `;
 
 export const ModalFormLoginButtons = styled(ModalFormLoginInput)``;
 
 export const Text = styled.p`
-  padding-top: 48px;
-  padding-bottom: 20px;
+  padding-top: 28px;
+  padding-bottom: 15px;
   color: #000;
   font-family: StratosSkyeng, sans-serif;
   font-size: 18px;
@@ -67,7 +66,7 @@ export const Text = styled.p`
 `;
 
 export const ModalInput = styled.input`
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   padding-top: 2px;
   padding-bottom: 8px;
   border: none;
