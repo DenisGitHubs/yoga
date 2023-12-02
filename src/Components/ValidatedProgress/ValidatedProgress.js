@@ -2,7 +2,7 @@
 import * as S from './ValidatedProgress.styled'
 
 export default function ValidatedProgress ({ closeInput }) {
-
+        window.location.reload()
 
 
     return (
