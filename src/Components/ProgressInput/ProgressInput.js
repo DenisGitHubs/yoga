@@ -5,6 +5,7 @@ import ValidatedProgress from '../ValidatedProgress/ValidatedProgress';
 import { updateProgressExercise } from '../../firebase/updateUserProgress';
 import { useDataWorkout } from '../../firebase/fireWorkouts';
 import { useUser } from '../../firebase/getUser';
+import { useSelector } from 'react-redux';
 
 export default function ProgressInput ({ closeInput, trainingChosen }) {
     const [newProgress, setNewProgress] = useState([]);
@@ -15,11 +16,14 @@ export default function ProgressInput ({ closeInput, trainingChosen }) {
         const params = useParams();
         const index = Number(params.id);
 
-        const submitProgress = () => {
-            const minusIndex = index - 1;
-            updateProgressExercise(minusIndex, newOutData)
-            setConfirmOnShow(true);
-        }
+        const progress = useSelector(state => state.progress.userProgressAll.userProgressAll.workoutsProgress[index - 1][0]);
+        console.log(progress);
+
+            const submitProgress = () => {
+                const minusIndex = index - 1;
+                updateProgressExercise(minusIndex, newOutData);
+                setConfirmOnShow(true);
+            }
 
             function ProgressHTML(props) {
                 
@@ -29,6 +33,8 @@ export default function ProgressInput ({ closeInput, trainingChosen }) {
                     const nameTraining = props.exercise.name
                     tempOutData[id] = {id: id, training: nameTraining, progress: Number(val)};
                     setNewOutData(newOutData)
+                    console.log(newOutData);
+
                     // опция для отправки данных в массиве
                     // const newAddedProgress = {id: props.exercise.id, repeats_done: val}
                     // setNewProgress([...newProgress, newAddedProgress])
