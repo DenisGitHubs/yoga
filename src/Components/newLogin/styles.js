@@ -27,7 +27,7 @@ export const Closer = styled.img`
   cursor: pointer;
 `;
 
-export const ModalFormLogin = styled.form`
+export const ModalFormLogin = styled.div`
   border-radius: 12px;
   background: #fff;
   display: flex;

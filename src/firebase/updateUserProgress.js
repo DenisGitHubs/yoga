@@ -19,17 +19,11 @@ import { useDataWorkout } from "./fireWorkouts";
 export function updateProgressExercise(IDtraining, progress) {
     const user = localStorage.getItem('email');
     const id = IDtraining
-    console.log(progress);
     firebase
     .database()
     .ref(`users/` + user.replace(/\./g, "-") + '/workoutsProgress' + `/${IDtraining}`)
     .update([progress])
-    .then(() => {
-      useDataWorkout()
-      console.log('again');
-    })
       .catch((error) => {
         console.error(error);
       });
-
 }

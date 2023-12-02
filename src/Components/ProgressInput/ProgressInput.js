@@ -15,20 +15,14 @@ export default function ProgressInput ({ closeInput, trainingChosen }) {
     //выбранный урок из списка
         const params = useParams();
         const index = Number(params.id);
-
-        const progress = useSelector(state => state.progress.userProgressAll.userProgressAll.workoutsProgress[index - 1][0]);
-        console.log(progress);
-
-            const submitProgress = () => {
-
-
+            const submitProgress = async () => {
                 let newOutData2 = newOutData.filter(function (el) {
                     return (el != null && el != "" || el === 0);
                 });
                 if(newOutData2.length === newOutData.length){
                     const minusIndex = index - 1;
                     updateProgressExercise(minusIndex, newOutData);
-                    setConfirmOnShow(true);
+                    await setConfirmOnShow(true);
                 } else {
                     alert("Введите все значения, иначе магии не будет")
                 }

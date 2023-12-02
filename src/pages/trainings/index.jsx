@@ -14,7 +14,7 @@ export const Trainings = () => {
   
   useUser();
   useDataWorkout();
-
+  console.log('object');
   const [loaderOn, setLoaderOn] = useState(false);
   const yogaWorkouts = useSelector(state => state.workout);
   const params = useParams();
