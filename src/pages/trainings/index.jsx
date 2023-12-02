@@ -16,21 +16,18 @@ export const Trainings = () => {
   useDataWorkout();
 
   const [loaderOn, setLoaderOn] = useState(false);
-
-  
   const yogaWorkouts = useSelector(state => state.workout);
-  console.log(yogaWorkouts.trainingData);
-
   const params = useParams();
   const index = Number(params.id);
-
   const progress = useSelector(state => state.progress.userProgressAll);
   const workoutProgress = progress?.userProgressAll.workoutsProgress[index - 1][0];
-  console.log(workoutProgress);
-
   const getProgressInPercent = ({ needed, id }) => {
-    const done = workoutProgress.find(item => item.id === id).progress;  
-    return (done / needed) * 100;
+    const done = workoutProgress.find(item => item.id === id).progress; 
+    let result = (done / needed) * 100
+    if(result > 100){
+      result = 100;
+    }
+    return result;
   };
 
 
@@ -64,13 +61,9 @@ export const Trainings = () => {
     },
   ];
 
-
-
   const trainingChosen = yogaWorkouts.trainingData.find(
     (training) => training.id === Number(params.id)
   );
-  console.log(trainingChosen);
-
   useEffect(() => {
     if (!trainingChosen) {
       setLoaderOn(true);

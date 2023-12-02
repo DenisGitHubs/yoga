@@ -20,9 +20,18 @@ export default function ProgressInput ({ closeInput, trainingChosen }) {
         console.log(progress);
 
             const submitProgress = () => {
-                const minusIndex = index - 1;
-                updateProgressExercise(minusIndex, newOutData);
-                setConfirmOnShow(true);
+
+
+                let newOutData2 = newOutData.filter(function (el) {
+                    return (el != null && el != "" || el === 0);
+                });
+                if(newOutData2.length === newOutData.length){
+                    const minusIndex = index - 1;
+                    updateProgressExercise(minusIndex, newOutData);
+                    setConfirmOnShow(true);
+                } else {
+                    alert("Введите все значения, иначе магии не будет")
+                }
             }
 
             function ProgressHTML(props) {
@@ -33,7 +42,7 @@ export default function ProgressInput ({ closeInput, trainingChosen }) {
                     const nameTraining = props.exercise.name
                     tempOutData[id] = {id: id, training: nameTraining, progress: Number(val)};
                     setNewOutData(newOutData)
-                    console.log(newOutData);
+
 
                     // опция для отправки данных в массиве
                     // const newAddedProgress = {id: props.exercise.id, repeats_done: val}
